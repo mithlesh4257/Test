@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.mithlesh4257.sampleprojectpinterest">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="pdk4940801214831935860" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="1442ad0e939ba41e81f2d5ecdad7eccda536d799" />
+
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_kitchen_sink" >
+        </activity>
+        <activity
+            android:name=".MyPinsActivity"
+            android:label="@string/title_activity_my_pins" >
+        </activity>
+        <activity
+            android:name=".CreateBoardActivity"
+            android:label="@string/title_activity_create_board" >
+        </activity>
+        <activity
+            android:name=".MyBoardsActivity"
+            android:label="@string/title_activity_my_boards" >
+        </activity>
+
+    </application>
+
+</manifest>
