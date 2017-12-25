@@ -21,7 +21,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private static final String appID = "4940801214831935860";
+    private static final String appID = "000000000000000";
     private PDKClient pdkClient;
     Button loginButton;
 
