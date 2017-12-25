@@ -1,5 +1,6 @@
 package com.example.mithlesh4257.sampleprojectpinterest;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -33,10 +34,11 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        setTitle("Pinterest Fetch");
+        profileIv = (ImageView) findViewById(R.id.profile_imageview);
+        setTitle("My Closet Wear");
 
         nameTv = (TextView) findViewById(R.id.name_textview);
-        profileIv = (ImageView) findViewById(R.id.profile_imageview);
+
 
         pinsButton = (Button) findViewById(R.id.pins_button);
         pinsButton.setOnClickListener(new View.OnClickListener() {

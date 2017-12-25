@@ -33,21 +33,17 @@
 
         <activity
             android:name=".HomeActivity"
-            android:label="@string/title_activity_kitchen_sink" >
-        </activity>
+            android:label="@string/title_activity_kitchen_sink"></activity>
         <activity
             android:name=".MyPinsActivity"
-            android:label="@string/title_activity_my_pins" >
-        </activity>
+            android:label="@string/title_activity_my_pins"></activity>
         <activity
             android:name=".CreateBoardActivity"
-            android:label="@string/title_activity_create_board" >
-        </activity>
+            android:label="@string/title_activity_create_board"></activity>
         <activity
             android:name=".MyBoardsActivity"
-            android:label="@string/title_activity_my_boards" >
-        </activity>
-
+            android:label="@string/title_activity_my_boards"></activity>
+        <activity android:name=".CreatePinActivity"></activity>
     </application>
 
 </manifest>

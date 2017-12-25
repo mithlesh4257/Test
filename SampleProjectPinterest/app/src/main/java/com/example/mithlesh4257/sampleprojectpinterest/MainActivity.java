@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import io.fabric.sdk.android.Fabric;
 import java.math.BigInteger;
@@ -18,52 +19,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+    private static final String appID = "4940801214831935860";
     private PDKClient pdkClient;
-    private static final String appID = "12345";
+    Button loginButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
+        loginButton = (Button) findViewById(R.id.login);
+        loginButton.setOnClickListener(this);
         pdkClient = PDKClient.configureInstance(this, appID);
-
-        // Call onConnect() method to make link between App id and Pinterest SDK
         pdkClient.onConnect(this);
         pdkClient.setDebugMode(true);
-
-
-
     }
 
-    public void onLogin(View view) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        pdkClient.onOauthResponse(requestCode, resultCode,
+                data);
+    }
 
+    private void onLogin() {
         List scopes = new ArrayList<String>();
         scopes.add(PDKClient.PDKCLIENT_PERMISSION_READ_PUBLIC);
         scopes.add(PDKClient.PDKCLIENT_PERMISSION_WRITE_PUBLIC);
         scopes.add(PDKClient.PDKCLIENT_PERMISSION_READ_RELATIONSHIPS);
         scopes.add(PDKClient.PDKCLIENT_PERMISSION_WRITE_RELATIONSHIPS);
-        scopes.add(PDKClient.PDKCLIENT_PERMISSION_READ_PRIVATE);
-        scopes.add(PDKClient.PDKCLIENT_PERMISSION_WRITE_PRIVATE);
 
         pdkClient.login(this, scopes, new PDKCallback() {
-
-            /**
-             * It called, when Authentication success
-             * @param response
-             */
             @Override
             public void onSuccess(PDKResponse response) {
-
-                Log.e(getClass().getName(), response.getData().toString());
-
+                Log.d(getClass().getName(), response.getData().toString());
+                onLoginSuccess();
             }
 
-            /**
-             * It called, when Authentication failed
-             * @param exception
-             */
             @Override
             public void onFailure(PDKException exception) {
                 Log.e(getClass().getName(), exception.getDetailMessage());
@@ -71,24 +65,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * It handle reuslt and switch back to own app when authentication process complete
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        pdkClient.onOauthResponse(requestCode, resultCode,
-                data);
-        // call onLoginSuccess() method
-        onLoginSuccess();
+    public void onClick(View v) {
+        int vid = v.getId();
+        switch (vid) {
+            case R.id.login:
+                onLogin();
+                break;
+        }
     }
 
-    /**
-     * Start HomeActivity class
-     */
     private void onLoginSuccess() {
         Intent i = new Intent(this, HomeActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

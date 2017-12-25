@@ -30,9 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class MyBoardsActivity extends AppCompatActivity {
-
 
     private PDKCallback myBoardsCallback;
     private PDKResponse myBoardsResponse;
@@ -57,7 +55,6 @@ public class MyBoardsActivity extends AppCompatActivity {
                                             ContextMenu.ContextMenuInfo menuInfo) {
                 MenuInflater inflater = getMenuInflater();
                 inflater.inflate(R.menu.context_menu_boards, menu);
-
             }
         });
 
@@ -212,6 +209,4 @@ public class MyBoardsActivity extends AppCompatActivity {
             TextView textViewItem;
         }
     }
-
-
 }
